@@ -1,0 +1,8 @@
+{
+  "name": "perf-track-analysis",
+  "version": "1.0.0",
+  "type": "module",
+  "module": "index.js",
+  "author": "Christian Lewis <ctjl96@gmail.com>",
+  "license": "MIT"
+}
