@@ -1,5 +1,11 @@
 import * as perfData from './perf-track/src/page-data/may-2020/index.js';
 
+const log = (...msgs) => console.log(
+    ...msgs.map(
+        (msg) => [msg, '\n'],
+    ).flat(),
+);
+
 const ranges = [
     [0, 200],
     [200, 400],
@@ -12,7 +18,6 @@ const ranges = [
 /**
  * Modifying prototypes is useful, forget what grandpa told you.
  */
-
 Array.prototype.sum = function() {
     return Number(
         this.reduce(
@@ -113,14 +118,14 @@ const totalJSGigabytes = () => {
 
 const gigabytesSorted = totalJSGigabytes().sortIndex(1);
 
-console.log(
-    `\n% of observed samples with JS >= 400kB, by framework`,
+log(
+    `% of observed samples with JS >= 400kB, by framework`,
     pctAboveKilobyteThreshold(400).sortIndex(1),
 
-    `\navg JS kB, by framework (lower bound)`,
+    `avg JS kB, by framework (lower bound)`,
     avgJSKilobytes().sortIndex(1),
     
-    `\ntotal JS GB, by framework (lower bound)`,
+    `total JS GB, by framework (lower bound)`,
     gigabytesSorted
 );
 
@@ -132,5 +137,5 @@ let totalGigabytes = 0;
 for (const [framework, gigabytes] of gigabytesSorted)
     totalGigabytes += gigabytes;
 
-console.log(`Total React JS in sample (lower bound): ${reactGigabytes}GB`);
-console.log(`Total JS GB in sample (lower bound): ${totalGigabytes}GB`);
+log(`Total React JS in sample (lower bound): ${reactGigabytes}GB`);
+log(`Total JS GB in sample (lower bound): ${totalGigabytes}GB`);
